@@ -12,6 +12,7 @@ import {
   Gear,
 } from "phosphor-react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Divider } from "react-native-paper";
 
 export default function Menu() {
   const navigation = useNavigation();
@@ -53,7 +54,7 @@ export default function Menu() {
           <Text>Aulas a Repor</Text>
         </TouchableOpacity>
       </View>
-      <Text className="h-[1px] w-[89%] mx-auto bg-slate-300 my-2" />
+      <Divider className="mx-5 my-3" />
       {/* Escola Menu */}
       <View className="flex flex-col space-y-2">
         {/* <Text className="mx-5 ">Escola</Text> */}
@@ -79,7 +80,7 @@ export default function Menu() {
           <Text>Metrônomo</Text>
         </TouchableOpacity>
       </View>
-      <Text className="h-[1px] w-[89%] mx-auto bg-slate-300 my-2" />
+      <Divider className="mx-5 my-3" />
       {/* Config Menu */}
       <TouchableOpacity onPress={() => navigation.navigate("Configurações")}>
         <View className="flex flex-row items-center my-2 mx-5 space-x-2">
