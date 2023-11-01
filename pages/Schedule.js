@@ -35,8 +35,8 @@ for (let i = 0; i < aulas.length; i++) {
   }
 }
 
-const aulasPassadasPorMesAno = {};
-const aulasFuturasPorMesAno = {};
+let aulasPassadasPorMesAno = {};
+let aulasFuturasPorMesAno = {};
 
 for (let i = 0; i < aulasPassadas.length; i++) {
   const dataAula = new Date(aulasPassadas[i].data);
@@ -47,6 +47,9 @@ for (let i = 0; i < aulasPassadas.length; i++) {
   }
 
   aulasPassadasPorMesAno[mesAno].push(aulasPassadas[i]);
+  aulasPassadasPorMesAno[mesAno].sort(
+    (a, b) => new Date(b.data) - new Date(a.data)
+  );
 }
 
 for (let i = 0; i < aulasFuturas.length; i++) {
