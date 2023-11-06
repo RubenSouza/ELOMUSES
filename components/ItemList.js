@@ -21,6 +21,8 @@ export default function ItemList({ data }) {
                         ? "bg-green-600"
                         : aula?.status === "naoRealizada"
                         ? "bg-red-600"
+                        : aula?.tipo === "reposição"
+                        ? "bg-yellow-700"
                         : null
                     }`}
                   />
@@ -36,6 +38,8 @@ export default function ItemList({ data }) {
                           ? "bg-green-600"
                           : aula?.status === "naoRealizada"
                           ? "bg-red-600"
+                          : aula?.tipo === "reposição"
+                          ? "bg-yellow-700 h-20"
                           : "h-20"
                       }`}
                     />
