@@ -9,9 +9,7 @@ const getRepositionClasses = () => {
   aulasFuturasPorMesAno &&
     Object.entries(aulasFuturasPorMesAno).map(item => {
       const [mesAno, aulas] = item;
-      const aulasReposicao = aulas.filter(
-        aula => aula.tipo === "reposição" || aula.tipo === "Reposição"
-      );
+      const aulasReposicao = aulas?.filter(aula => aula.tipo === "reposição");
       if (aulasReposicao.length > 0) {
         RepositionClasses[mesAno] = aulasReposicao;
       }

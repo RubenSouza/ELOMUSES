@@ -1,82 +1,122 @@
 [
   {
     "nome": "Bohemian Rhapsody",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1ubsrMDapd_rlopjfQOJkxmtodthvBGpk/view?usp=sharing",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "Stairway to Heaven",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://firebasestorage.googleapis.com/v0/b/school-df18f.appspot.com/o/pdfs%2FDocumentacao_da_API_Basica_com_Swagger_UI.pdf?alt=media&token=2f8d0131-75f2-47c9-88bb-346e7cd6c4b6",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "Imagine",
-    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view"
+    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Smells Like Teen Spirit",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Sweet Child O' Mine",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Hotel California",
-    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view"
+    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "Billie Jean",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Like a Rolling Stone",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Hey Jude",
-    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view"
+    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "I Will Always Love You",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Purple Haze",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "What's Going On",
-    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view"
+    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "My Generation",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Yesterday",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "Good Vibrations",
-    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view"
+    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "Johnny B. Goode",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "I Heard It Through the Grapevine",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "Brown Eyed Girl",
-    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view"
+    "link": "https://drive.google.com/file/d/0987654321zyxwvutsrqponmlkjihgfedcba/view",
+    "arquivo": "pdf",
+    "tipo": "partitura"
   },
   {
     "nome": "A Change Is Gonna Come",
-    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view"
+    "link": "https://drive.google.com/file/d/1234567890abcdefghijklmnopqrstuvwxyz/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   },
   {
     "nome": "London Calling",
-    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view"
+    "link": "https://drive.google.com/file/d/abcdefghijklmnopqrstuvwxyz1234567890/view",
+    "arquivo": "pdf",
+    "tipo": "tablatura"
   }
 ]
