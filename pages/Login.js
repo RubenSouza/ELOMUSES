@@ -1,10 +1,13 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Button, TextInput } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/userSlice";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
+  const navigation = useNavigation();
+
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -55,11 +58,11 @@ export default function Login() {
           LOGIN
         </Button>
       </View>
-      <View>
-        <Text className="font-semibold  text-sm">
-          Não possui uma conta?{" "}
-          <Text className="font-bold text-violet-900">Inscreva-se</Text>
-        </Text>
+      <View className="flex flex-row space-x-1 items-center">
+        <Text className="font-semibold  text-sm">Não possui uma conta?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Registrar-se")}>
+          <Text className="font-bold text-violet-900">Registre-se</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
