@@ -56,7 +56,7 @@ const ProtectedRoute = () => {
   const user = useSelector(state => state.userLogged.user);
   const isLoggedIn = !!user;
 
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     return (
       <Stack.Navigator
         initialRouteName="Página Inicial"
@@ -69,8 +69,13 @@ const ProtectedRoute = () => {
         }}
       >
         <Stack.Screen
-          name="Página Inicial"
-          component={TabStack}
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Registrar-se"
+          component={Register}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
