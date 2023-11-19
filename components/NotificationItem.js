@@ -6,7 +6,6 @@ export default function NotificationItem({ title, date, content }) {
   return (
     <View>
       <View className="flex flex-row items-center h-[110px] my-1">
-        {/* <View className="rounded-full h-4 w-4 bg-blue-400 my-[6px] mr-3" /> */}
         <View className="">
           <View className="flex flex-row items-center space-x-3">
             <View className="rounded-full h-4 w-4 bg-blue-400 mt-1" />

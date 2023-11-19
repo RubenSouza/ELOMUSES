@@ -15,39 +15,6 @@ export default function Home() {
     borderRadius: 10,
   };
 
-  // const notifications = [
-  //   {
-  //     title: "Faturas atrasadas",
-  //     date: "2022-01-01",
-  //     content:
-  //       "Você possui faturas em atraso. Por favor, regularize sua situação o quanto antes.",
-  //   },
-  //   {
-  //     title: "Fatura se aproximando do dia de pagamento",
-  //     date: "2022-01-05",
-  //     content:
-  //       "Sua próxima fatura vence em 5 dias. Verifique se há saldo suficiente em sua conta para o pagamento.",
-  //   },
-  //   {
-  //     title: "Pagamento confirmado",
-  //     date: "2022-01-10",
-  //     content:
-  //       "Seu pagamento foi confirmado. Obrigado por escolher nossa escola de música!",
-  //   },
-  //   {
-  //     title: "Próxima aula é amanhã",
-  //     date: "2022-01-15",
-  //     content:
-  //       "Lembrete: sua próxima aula de música é amanhã. Não se esqueça de trazer seu instrumento!",
-  //   },
-  //   {
-  //     title: "Próxima aula é hoje",
-  //     date: "2022-01-20",
-  //     content:
-  //       "Lembrete: sua próxima aula de música é hoje. Não se esqueça de trazer seu instrumento!",
-  //   },
-  // ];
-
   return (
     <PaperProvider>
       <Portal>

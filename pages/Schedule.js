@@ -1,7 +1,10 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import ItemList from "../components/ItemList";
+
+import { SafeAreaView } from "react-native";
+import { SegmentedButtons } from "react-native-paper";
 
 import {
   aulasPassadasPorMesAno,
@@ -23,6 +26,34 @@ const PreviousClasses = () => {
     </View>
   );
 };
+
+// export default function Schedule() {
+//   const Tab = createMaterialTopTabNavigator();
+//   const [value, setValue] = useState("next");
+
+//   return (
+//     <SafeAreaView className="flex-1 my-6">
+//       <SegmentedButtons
+//         value={value}
+//         onValueChange={setValue}
+//         className="mx-4"
+//         buttons={[
+//           {
+//             value: "next",
+//             label: "Próximas Aulas",
+//             icon: "clock-outline",
+//           },
+//           {
+//             value: "previous",
+//             label: "Aulas anteriores",
+//             icon: "calendar-clock",
+//           },
+//         ]}
+//       />
+//       {value === "next" ? <NextClasses /> : <PreviousClasses />}
+//     </SafeAreaView>
+//   );
+// }
 
 export default function Schedule() {
   const Tab = createMaterialTopTabNavigator();
