@@ -65,7 +65,7 @@ export default function Menu() {
           <CurrencyDollarSimple size={25} className="text-yellow-700" />
           <Text>Faturas</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           className="flex flex-row items-center my-2 mx-5 space-x-2"
           onPress={() => navigation.navigate("Calendário Escolar")}
         >
@@ -78,16 +78,16 @@ export default function Menu() {
         >
           <Microphone size={25} className="text-yellow-700" />
           <Text>Metrônomo</Text>
+        </TouchableOpacity> */}
+        {/* Config Menu */}
+        <TouchableOpacity onPress={() => navigation.navigate("Configurações")}>
+          <View className="flex flex-row items-center my-2 mx-5 space-x-2">
+            <Gear size={25} className="text-slate-700" />
+            <Text>Configurações</Text>
+          </View>
         </TouchableOpacity>
       </View>
-      <Divider className="mx-5 my-3" />
-      {/* Config Menu */}
-      <TouchableOpacity onPress={() => navigation.navigate("Configurações")}>
-        <View className="flex flex-row items-center my-2 mx-5 space-x-2">
-          <Gear size={25} className="text-slate-700" />
-          <Text>Configurações</Text>
-        </View>
-      </TouchableOpacity>
+      {/* <Divider className="mx-5 my-3" /> */}
     </View>
   );
 }

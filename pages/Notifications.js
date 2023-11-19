@@ -28,6 +28,21 @@ const notifications = [
     date: "2022-01-20",
     content: "Sua próxima aula de música é hoje.",
   },
+  {
+    title: "Próxima aula é hoje",
+    date: "2022-01-20",
+    content: "Sua próxima aula de música é hoje.",
+  },
+  {
+    title: "Próxima aula é hoje",
+    date: "2022-01-20",
+    content: "Sua próxima aula de música é hoje.",
+  },
+  {
+    title: "Próxima aula é hoje",
+    date: "2022-01-20",
+    content: "Sua próxima aula de música é hoje.",
+  },
 ];
 
 export default function Notifications() {
@@ -37,6 +52,7 @@ export default function Notifications() {
       <FlatList
         data={notifications}
         keyExtractor={(item, index) => index.toString()}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <NotificationItem
             title={item.title}
