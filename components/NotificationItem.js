@@ -5,7 +5,7 @@ import React from "react";
 export default function NotificationItem({ title, date, content }) {
   return (
     <View>
-      <View className="flex flex-row items-center h-[110px] my-1">
+      <View className="flex flex-row items-center h-[110px] ">
         <View className="">
           <View className="flex flex-row items-center space-x-3">
             <View className="rounded-full h-4 w-4 bg-blue-400 mt-1" />

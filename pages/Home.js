@@ -3,7 +3,7 @@ import React from "react";
 import { Modal, Portal, PaperProvider } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
@@ -83,8 +83,8 @@ export default function Home() {
           )}
         </Modal>
       </Portal>
-      <View className="flex-1 my-10 mx-5 flex items-center">
-        <Text className="text-lg font-medium">Quadro de avisos</Text>
+      <View className="flex-1 my-2 mx-5 flex items-center">
+        {/* <Text className="text-lg font-medium">Quadro de avisos</Text> */}
         <FlatList
           data={notifications}
           keyExtractor={(item, i) => i.toString()}

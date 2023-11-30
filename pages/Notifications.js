@@ -47,8 +47,7 @@ const notifications = [
 
 export default function Notifications() {
   return (
-    <View className="my-10 mx-5 flex items-center">
-      <Text className="text-lg font-medium">Notificações</Text>
+    <View className="mx-5 flex items-center">
       <FlatList
         data={notifications}
         keyExtractor={(item, index) => index.toString()}
