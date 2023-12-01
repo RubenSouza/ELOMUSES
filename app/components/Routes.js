@@ -165,7 +165,9 @@ const ProtectedRoute = () => {
       <Stack.Screen
         name="Notificações"
         component={Notifications}
-        // options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+        }}
       />
     </Drawer.Navigator>
   );
