@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "express-validation": "^4.1.0",
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.2",
+    "mongoose-aggregate-paginate-v2": "^1.0.6",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "name": "elomusesApi",
+  "main": "server.js",
+  "license": "MIT"
+}
