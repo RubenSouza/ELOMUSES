@@ -20,6 +20,16 @@ dotenv.config();
 
 //Connect to MongoDB
 
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("MongoDB is connected");
+  } catch (error) {
+    console.log("Error:", error);
+    process.exit(1);
+  }
+};
+
 //JSON
 
 app.use(express.json());
@@ -52,7 +62,9 @@ app.use("/", require("./routes"));
 
 //APP LISTEN
 
-app.listen(PORT, error => {
-  if (error) throw error;
-  console.log(`Server is running in http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, error => {
+    if (error) throw error;
+    console.log(`Server is running in http://localhost:${PORT}`);
+  });
 });
