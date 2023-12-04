@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -30,7 +31,6 @@ const UserSchema = new mongoose.Schema(
       default: "",
       trim: true,
     },
-
     phone: {
       type: String,
       required: true,
@@ -56,6 +56,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    contract: {
+      type: Number,
+      default: 1,
+    },
     status: {
       type: String,
       default: "Liberado",
@@ -65,6 +69,8 @@ const UserSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+UserSchema.plugin(aggregatePaginate);
 
 module.exports = mongoose.model("User", UserSchema);
 
@@ -81,6 +87,9 @@ module.exports = mongoose.model("User", UserSchema);
 // 	Pagamentos
 // 	Aulas
 // 	Notificações
+//  Contrato(
+//  1,3,6, 12 meses
+//  )
 // 	Status (
 // 		Liberado
 // 		Bloqueado
