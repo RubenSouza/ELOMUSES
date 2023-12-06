@@ -1,12 +1,6 @@
 const Joi = require("joi");
 
 const UserValidation = {
-  index: {
-    params: Joi.object({
-      id: Joi.string().alphanum().required(),
-    }),
-  },
-
   register: {
     body: Joi.object({
       name: Joi.string().required(),

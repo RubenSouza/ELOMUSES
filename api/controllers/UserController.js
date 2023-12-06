@@ -161,16 +161,18 @@ const UserController = {
   //GET PAGINATED USERS ADMIN
 
   async getPaginatedAdmin(req, res, next) {
-    const page = req.query.page;
+    const page = req.query.page || 1;
     const limit = 16;
 
     try {
+      const myAggregate = User.aggregate();
+
       const options = {
         page: page,
         limit: limit,
       };
 
-      const result = await User.paginate({}, options);
+      const result = await User.aggregatePaginate(myAggregate, options);
       return res.json(result);
     } catch (error) {
       return res.status(401).json({ errors: error });
@@ -189,6 +191,7 @@ const UserController = {
       profilePic,
       isAdmin,
       status,
+      files,
       contract,
     } = req.body;
 
@@ -229,6 +232,9 @@ const UserController = {
       }
       if (isAdmin) {
         user.isAdmin = isAdmin;
+      }
+      if (files) {
+        user.files = files;
       }
 
       try {

@@ -7,13 +7,13 @@ const { validate } = require("express-validation");
 
 const UserValidation = require("../../../controllers/validations/userValidaton");
 
-//client routes
+/* USER ROUTES */
 
 router.post(
   "/login",
   validate(UserValidation.login, {}, {}),
   UserController.login
-);
+); //tested
 
 router.put(
   "/update",
@@ -22,21 +22,16 @@ router.put(
   UserController.update
 );
 
-router.get(
-  "/",
-  auth.required,
-  validate(UserValidation.index, {}, {}),
-  UserController.index
-);
+router.get("/", auth.required, UserController.index); //tested
 
-//admin routes
+/* ADMIN ROUTES */
 
 router.get(
   "/admin",
   auth.required,
   adminValidation.admin,
   UserController.getPaginatedAdmin
-);
+); //tested
 
 router.post(
   "/admin/register",
@@ -44,7 +39,7 @@ router.post(
   adminValidation.admin,
   validate(UserValidation.register, {}, {}),
   UserController.register
-);
+); //tested
 
 router.put(
   "/admin/:id",
@@ -58,15 +53,14 @@ router.delete(
   "/admin/:id",
   auth.required,
   adminValidation.admin,
-  validate(UserValidation.index, {}, {}),
-  UserController.delete
-);
+  UserController.deleteAdmin
+); //tested
 
 router.get(
   "/admin/:id",
   auth.required,
   adminValidation.admin,
   UserController.show
-);
+); //tested
 
 module.exports = router;
