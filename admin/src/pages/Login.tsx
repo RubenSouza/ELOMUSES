@@ -1,12 +1,16 @@
 import toast, { Toaster } from "react-hot-toast";
 import waves from "../assets/waves.svg";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { BsGoogle, BsGithub } from "react-icons/bs";
-import { useState } from "react";
 import axios from "axios";
 import DarkMode from "../components/DarkMode";
+import { setUser } from "../redux/features/userLogged";
+import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.userLogged.user);
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
 
@@ -17,19 +21,26 @@ const Login = () => {
       email,
       password,
     };
+
     try {
       const fetchUserLogin = await axios.post(
-        "http://localhost:3001/v1/api/users/login",
+        "http://localhost:3001/v1/api/users/admin/login",
         userData
       );
       if (fetchUserLogin) {
-        localStorage.setItem("user", JSON.stringify(fetchUserLogin.data));
+        dispatch(setUser(fetchUserLogin.data));
         window.location.href = "/";
       }
     } catch (error: any) {
       toast.error(error.response.data);
     }
   };
+
+  useEffect(() => {
+    if (user !== null) {
+      window.location.href = "/";
+    }
+  }, []);
 
   return (
     <div className="h-screen">

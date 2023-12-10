@@ -31,6 +31,38 @@ const UserController = {
     return res.status(200).json({ ...info, accesstoken });
   },
 
+  //ADMIN LOGIN
+
+  async adminLogin(req, res, next) {
+    const { email, password } = req.body;
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json("Usuário ou senha incorretos");
+    }
+
+    const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
+    const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
+
+    if (originalPassword !== password) {
+      return res.status(401).json("Usuário ou senha incorretos");
+    }
+
+    if (user.isAdmin === false) {
+      return res.status(401).json("Usuário não é administrador");
+    }
+
+    const accessToken = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.SECRET_KEY,
+      { expiresIn: "5d" }
+    );
+
+    const { name } = user._doc;
+    return res.status(200).json({ name, accessToken });
+  },
+
   //PUT UPDATE
 
   async update(req, res, next) {

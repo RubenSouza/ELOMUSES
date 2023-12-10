@@ -26,6 +26,12 @@ router.get("/", auth.required, UserController.index); //tested
 
 /* ADMIN ROUTES */
 
+router.post(
+  "/admin/login",
+  validate(UserValidation.login, {}, {}),
+  UserController.adminLogin
+);
+
 router.get(
   "/admin",
   auth.required,
@@ -62,5 +68,12 @@ router.get(
   adminValidation.admin,
   UserController.show
 ); //tested
+
+router.post(
+  "/admin/verify-token",
+  auth.required,
+  adminValidation.admin,
+  (req, res) => res.json({ success: true })
+);
 
 module.exports = router;
