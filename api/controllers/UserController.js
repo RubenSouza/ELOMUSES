@@ -21,14 +21,14 @@ const UserController = {
       return res.status(400).json({ message: "Usuário ou senha incorretos" });
     }
 
-    const accesstoken = jwt.sign(
+    const accessToken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
       process.env.SECRET_KEY,
       { expiresIn: "5d" }
     );
 
     const { password: dbPassword, ...info } = user._doc;
-    return res.status(200).json({ ...info, accesstoken });
+    return res.status(200).json({ ...info, accessToken });
   },
 
   //ADMIN LOGIN

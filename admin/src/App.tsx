@@ -45,7 +45,7 @@ function App() {
           })
           .catch(error => {
             dispatch(setUser(null));
-            toast.error("O usuário não existe.");
+            toast.error("Usuário não autorizado");
           });
       }
     }
