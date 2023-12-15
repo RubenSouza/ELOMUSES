@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.userLogged.user);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const darkMode = useSelector((state: any) => state.darkMode.mode);
+  // const darkMode = useSelector((state: any) => state.darkMode.mode);
   const location = useLocation();
 
   useEffect(() => {
@@ -54,7 +54,8 @@ function App() {
   if (isLoading) return <Loading />;
   else {
     return (
-      <div className={`${darkMode === "dark" ? "dark" : ""}`}>
+      // <div className={`${darkMode === "dark" ? "dark" : ""}`}>
+      <div>
         <div
           className="bg-primary-150 dark:bg-primary-500 h-screen max-h-screen 
         text-primary-600 dark:text-primary-100"
