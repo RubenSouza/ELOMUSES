@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Calendar, momentLocalizer, Event } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { createClass, getClasses } from "../utils/classes";
+import { createClass, getClasses, getStudents } from "../utils/classes";
 
 interface MyEvent extends Event {
   title: string;
@@ -15,16 +15,51 @@ interface MyEvent extends Event {
   hora: string;
 }
 
+type Student = {
+  _id: string;
+  name: string;
+};
+
 interface BasicCalendarProps {
   events: MyEvent[];
   fetchClasses: () => Promise<void>;
+  students: Student[];
 }
 
+moment.updateLocale("pt-br", {
+  months:
+    "Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro".split(
+      "_"
+    ),
+  monthsShort: "jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez".split("_"),
+  weekdays: [
+    "Domingo",
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado",
+  ],
+  weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+});
+
+moment.locale("pt-br");
 const localizer = momentLocalizer(moment);
+
+const messages = {
+  today: "Hoje",
+  previous: "Anterior",
+  next: "Próximo",
+  month: "Mês",
+  week: "Semana",
+  day: "Dia",
+};
 
 const BasicCalendar: React.FC<BasicCalendarProps> = ({
   events,
   fetchClasses,
+  students,
 }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<{
@@ -32,6 +67,8 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
     end: Date;
   } | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+
+  console.log(students);
 
   const handleSelectSlot = (slotInfo: { start: Date; end: Date }) => {
     setSelectedSlot(slotInfo);
@@ -100,32 +137,38 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
   }, [openModal]);
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full text-base">
       <Calendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
         selectable
+        views={["month", "week", "day"]}
+        messages={messages}
         onSelectSlot={handleSelectSlot}
+        dayLayoutAlgorithm="no-overlap"
       />
+
+      {/* Modal para criar a aula */}
 
       {openModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div
-            className="bg-white rounded-lg p-8 max-w-md w-full flex flex-col items-center justify-center space-y-2"
+            className="bg-white rounded-lg p-8 max-w-md w-full flex flex-col items-center justify-center  max-h-[600px]"
             ref={modalRef}
           >
             <h2 className="text-2xl font-bold">Cadastrar aula</h2>
             <form
-              className="w-full"
+              className="w-full space-y-2"
               onSubmit={e => {
                 e.preventDefault();
                 handleAddEvent();
               }}
             >
-              <div className="mb-4">
-                <label htmlFor="sobre" className="block text-sm font-bold mb-2">
+              {/* titulo */}
+              <div className="">
+                <label htmlFor="sobre" className="block text-sm font-bold ">
                   Titulo:
                 </label>
                 <input
@@ -136,29 +179,32 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   placeholder="Sobre o evento"
                 />
               </div>
+              {/* Aluno e tipo */}
               <div className="flex flex-row space-x-2">
-                <div className="mb-4">
-                  <label
-                    htmlFor="aluno"
-                    className="block text-sm font-bold mb-2"
-                  >
+                <div className="flex-1">
+                  <label htmlFor="aluno" className="block text-sm font-bold ">
                     Aluno:
                   </label>
                   <select
                     id="aluno"
                     name="aluno"
-                    className="border border-gray-400 rounded w-full"
+                    className="border border-gray-400 rounded w-full "
                   >
-                    <option value="">Selecione um aluno</option>
-                    <option value="656f1d21f57539f0324420f4">Aluno 1</option>
-                    <option value="aluno2">Aluno 2</option>
+                    {students.map(student => {
+                      const names = student.name.split(" ");
+                      const firstName = names[0];
+                      const secondName = names.length > 1 ? names[1] : "";
+                      const displayText = `${firstName} ${secondName}`;
+                      return (
+                        <option key={student._id} value={student._id}>
+                          {displayText.trim()}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="tipo"
-                    className="block text-sm font-bold mb-2"
-                  >
+                <div className="flex-1">
+                  <label htmlFor="tipo" className="block text-sm font-bold ">
                     Tipo:
                   </label>
                   <select
@@ -172,8 +218,9 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   </select>
                 </div>
               </div>
-              <div className="mb-4">
-                <label htmlFor="sobre" className="block text-sm font-bold mb-2">
+              {/* Sobre */}
+              <div className="">
+                <label htmlFor="sobre" className="block text-sm font-bold">
                   Sobre:
                 </label>
                 <input
@@ -181,11 +228,12 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   id="sobre"
                   name="sobre"
                   className="border border-gray-400 rounded w-full p-2"
-                  placeholder="Sobre o evento"
+                  placeholder="Sobre a aula"
                 />
               </div>
-              <div className="mb-4">
-                <label htmlFor="sobre" className="block text-sm font-bold mb-2">
+              {/* Assunto */}
+              <div className="">
+                <label htmlFor="sobre" className="block text-sm font-bold">
                   Assunto:
                 </label>
                 <input
@@ -193,11 +241,12 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   id="assunto"
                   name="assunto"
                   className="border border-gray-400 rounded w-full p-2"
-                  placeholder="Sobre o evento"
+                  placeholder="Assunto da aula"
                 />
               </div>
-              <div className="mb-4">
-                <label htmlFor="sobre" className="block text-sm font-bold mb-2">
+              {/* Status */}
+              <div className="">
+                <label htmlFor="sobre" className="block text-sm font-bold">
                   Status:
                 </label>
                 <select
@@ -209,12 +258,10 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   <option value="Realizada">Realizada</option>
                 </select>
               </div>
+              {/* Inicio  */}
               <div className="w-full flex flex-row space-x-2">
-                <div className="mb-4 w-full">
-                  <label
-                    htmlFor="sobre"
-                    className="block text-sm font-bold mb-2"
-                  >
+                <div className=" w-full">
+                  <label htmlFor="sobre" className="block text-sm font-bold">
                     Inicio:
                   </label>
                   <input
@@ -227,11 +274,8 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                       .substr(0, 10)}
                   />
                 </div>
-                <div className="mb-4 w-full">
-                  <label
-                    htmlFor="hora"
-                    className="block text-sm font-bold mb-2"
-                  >
+                <div className="w-full">
+                  <label htmlFor="hora" className="block text-sm font-bold">
                     Hora:
                   </label>
                   <input
@@ -246,12 +290,10 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   />
                 </div>
               </div>
+              {/* Fim */}
               <div className="w-full flex flex-row space-x-2">
-                <div className="mb-4 w-full">
-                  <label
-                    htmlFor="sobre"
-                    className="block text-sm font-bold mb-2"
-                  >
+                <div className="w-full">
+                  <label htmlFor="sobre" className="block text-sm font-bold">
                     Fim:
                   </label>
                   <input
@@ -264,11 +306,8 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                       .substr(0, 10)}
                   />
                 </div>
-                <div className="mb-4 w-full">
-                  <label
-                    htmlFor="hora"
-                    className="block text-sm font-bold mb-2"
-                  >
+                <div className="w-full">
+                  <label htmlFor="hora" className="block text-sm font-bold ">
                     Hora:
                   </label>
                   <input
@@ -283,6 +322,7 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                   />
                 </div>
               </div>
+              {/* Button */}
               <div className="flex justify-end">
                 <button
                   type="submit"
@@ -301,12 +341,14 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
 
 const CalendarPage = () => {
   const [classes, setClasses] = useState<MyEvent[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
 
   const fetchClasses = async () => {
     try {
       const classesData = await getClasses();
-      console.log("classesData:", classesData);
       setClasses(classesData);
+      const studentsData = await getStudents();
+      setStudents(studentsData);
     } catch (error) {
       console.error("Erro ao obter as aulas:", error);
     }
@@ -318,7 +360,11 @@ const CalendarPage = () => {
 
   return (
     <div className="text-2xl font-black w-full h-screen">
-      <BasicCalendar events={classes} fetchClasses={fetchClasses} />
+      <BasicCalendar
+        events={classes}
+        fetchClasses={fetchClasses}
+        students={students}
+      />
     </div>
   );
 };

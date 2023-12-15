@@ -33,7 +33,6 @@ export const getClasses = async () => {
       end: new Date(classItem.end),
     }));
 
-    console.log(classes);
     return classes;
   } catch (error) {
     throw new Error("Erro ao obter as aulas");
@@ -47,9 +46,20 @@ export const createClass = async (classItem: Class) => {
       classItem,
       config
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error("Erro ao criar a aula");
+  }
+};
+
+export const getStudents = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3001/v1/api/users/admin",
+      config
+    );
+    return response.data.docs;
+  } catch (error) {
+    throw new Error("Erro ao buscar aluno");
   }
 };
