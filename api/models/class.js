@@ -4,7 +4,7 @@ const AulaSchema = new mongoose.Schema(
   {
     aluno: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Referência ao modelo de usuário/aluno
+      ref: "User",
       required: true,
     },
     title: {
@@ -24,16 +24,17 @@ const AulaSchema = new mongoose.Schema(
     },
 
     start: {
-      type: Date,
+      type: String,
       required: true,
     },
     end: {
-      type: Date,
+      type: String,
       required: true,
     },
 
     assunto: {
       type: String,
+      required: false,
       trim: true,
     },
     status: {
@@ -48,12 +49,3 @@ const AulaSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Class", AulaSchema);
-
-// Aulas {
-//     Aluno : Modelo de aluno.
-//     Sobre: Violão / Teclado e etc
-//     Tipo de aula(Aula única/ Aula recorrente / Reposição)
-//     Data(dia, mês, ano e horário da aula da aula)
-//     Assunto(Opcional)
-//     Status da aula (Realizada / Não Realizada)
-//  }

@@ -28,12 +28,13 @@ router.get(
 
 router.get("/aluno/:id", auth.required, ClassController.getByStudent);
 
-// router.put(
-//   "/:id",
-//   auth.required,
-//   validate(ClassValidation.update, {}, {}),
-//   ClassController.update
-// );
+router.put(
+  "/:id",
+  auth.required,
+  adminValidation.admin,
+  validate(ClassValidation.update, {}, {}),
+  ClassController.update
+);
 
 router.delete(
   "/:id",

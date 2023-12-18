@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import moment from "moment-timezone";
 const user = localStorage.getItem("user");
 const jsonUser = user ? JSON.parse(user) : null;
 const accessToken = jsonUser?.accessToken.toString();
@@ -16,8 +16,8 @@ type Class = {
   tipo: string;
   sobre: string;
   assunto: string;
-  start: Date;
-  end: Date;
+  start: string;
+  end: string;
 };
 
 export const getClasses = async () => {
@@ -27,12 +27,18 @@ export const getClasses = async () => {
       config
     );
 
-    const classes = response.data.allClasses.map((classItem: Class) => ({
-      ...classItem,
-      start: new Date(classItem.start),
-      end: new Date(classItem.end),
-    }));
+    const classes = response.data.allClasses.map((classItem: Class) => {
+      const start = moment(classItem.start).toDate();
+      const end = moment(classItem.end).toDate();
 
+      return {
+        ...classItem,
+        start: start,
+        end: end,
+      };
+    });
+
+    console.log(classes);
     return classes;
   } catch (error) {
     throw new Error("Erro ao obter as aulas");
@@ -61,5 +67,18 @@ export const getStudents = async () => {
     return response.data.docs;
   } catch (error) {
     throw new Error("Erro ao buscar aluno");
+  }
+};
+
+export const updateClass = async (classItem: Class, id: string) => {
+  try {
+    const response = await axios.put(
+      `http://localhost:3001/v1/api/classes/${id}`,
+      classItem,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Erro ao atualizar a aula");
   }
 };

@@ -7,10 +7,15 @@ const ClassValidation = {
       title: Joi.string().required(),
       sobre: Joi.string().required(),
       tipo: Joi.string().required(),
-      assunto: Joi.string().optional(),
-      status: Joi.string().optional(),
+      assunto: Joi.string().allow("").optional(),
+      status: Joi.string().required(),
       start: Joi.date().required(),
       end: Joi.date().required(),
+    }),
+  },
+  update: {
+    params: Joi.object({
+      id: Joi.string().required(),
     }),
   },
 };

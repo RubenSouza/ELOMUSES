@@ -44,7 +44,6 @@ const ClassController = {
 
         return res.json({ newClass });
       } else {
-        // Se não for recorrente, cria apenas o evento inicial
         const newClass = await Class.create({
           aluno,
           title,
@@ -64,6 +63,48 @@ const ClassController = {
   },
 
   // UPDATE
+
+  async update(req, res, next) {
+    const { title, aluno, tipo, sobre, assunto, status, start, end } = req.body;
+    const id = req.params.id;
+
+    try {
+      const classToUpdate = await Class.findById(id);
+
+      if (classToUpdate) {
+        const { tipo: currentType } = classToUpdate;
+
+        if (currentType === "Aula recorrente" && tipo !== "Aula recorrente") {
+          const futureClasses = await Class.find({
+            aluno: classToUpdate.aluno,
+            tipo: "Aula recorrente",
+            start: { $gt: classToUpdate.start },
+          });
+
+          await Class.deleteMany({
+            _id: { $in: futureClasses.map(futureClass => futureClass._id) },
+          });
+        }
+
+        if (title) classToUpdate.title = title;
+        if (aluno) classToUpdate.aluno = aluno;
+        if (tipo) classToUpdate.tipo = tipo;
+        if (sobre) classToUpdate.sobre = sobre;
+        if (assunto) classToUpdate.assunto = assunto;
+        if (status) classToUpdate.status = status;
+        if (start) classToUpdate.start = start;
+        if (end) classToUpdate.end = end;
+
+        await classToUpdate.save();
+
+        return res.json({ classToUpdate });
+      } else {
+        return res.status(404).json({ message: "Aula não encontrada" });
+      }
+    } catch (err) {
+      return next(err);
+    }
+  },
 
   //DELETE by ID
 
@@ -102,7 +143,7 @@ const ClassController = {
               $gte: threeMonthsAgo.toISOString().split("T")[0],
               $lte: currentDate.toISOString().split("T")[0],
             },
-          }, // Aulas passadas até 3 meses atrás
+          },
         ],
       });
 
@@ -130,12 +171,3 @@ const ClassController = {
 };
 
 module.exports = ClassController;
-
-// title,
-// aluno: "id do aluno",
-// sobre: "Violão, teclado, etc",
-// tipo: "Aula única / Aula recorrente / Reposição",
-// assunto: "Opcional",
-// status: "Não Realizada",
-// inicio: inicio da aula(data e horário)),
-// fim: fim da aula(data e horário),
