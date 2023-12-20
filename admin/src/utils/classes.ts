@@ -38,7 +38,6 @@ export const getClasses = async () => {
       };
     });
 
-    console.log(classes);
     return classes;
   } catch (error) {
     throw new Error("Erro ao obter as aulas");
@@ -80,5 +79,17 @@ export const updateClass = async (classItem: Class, id: string) => {
     return response.data;
   } catch (error) {
     throw new Error("Erro ao atualizar a aula");
+  }
+};
+
+export const deleteClass = async (id: string) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:3001/v1/api/classes/${id}`,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Erro ao deletar a aula");
   }
 };

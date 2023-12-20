@@ -19,16 +19,16 @@ const ClassController = {
           tipo,
           assunto,
           status,
-          start: new Date(dataV),
-          end: new Date(endV),
+          start: dataV.toISOString(),
+          end: endV.toISOString(),
         });
 
         const tresMesesDepois = new Date();
         tresMesesDepois.setMonth(tresMesesDepois.getMonth() + 3);
 
         while (dataV < tresMesesDepois) {
-          dataV.setDate(dataV.getDate() + 7);
-          endV.setDate(endV.getDate() + 7);
+          dataV.setUTCDate(dataV.getUTCDate() + 7);
+          endV.setUTCDate(endV.getUTCDate() + 7);
 
           await Class.create({
             aluno,
@@ -37,8 +37,8 @@ const ClassController = {
             tipo,
             assunto,
             status,
-            start: new Date(dataV),
-            end: new Date(endV),
+            start: dataV.toISOString(),
+            end: endV.toISOString(),
           });
         }
 

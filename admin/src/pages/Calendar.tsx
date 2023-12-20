@@ -8,6 +8,7 @@ import {
   getClasses,
   getStudents,
   updateClass,
+  deleteClass,
 } from "../utils/classes";
 
 interface MyEvent extends Event {
@@ -127,6 +128,7 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
       start: startDateTime,
       end: endDateTime,
     };
+
     await createClass(formData);
     fetchClasses();
   };
@@ -170,6 +172,14 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
 
     if (selectedEvent) {
       await updateClass(formData, selectedEvent._id);
+      fetchClasses();
+    }
+  };
+
+  const handleDeleteEvent = async () => {
+    setOpenEditModal(false);
+    if (selectedEvent) {
+      await deleteClass(selectedEvent._id);
       fetchClasses();
     }
   };
@@ -624,6 +634,7 @@ const BasicCalendar: React.FC<BasicCalendarProps> = ({
                 <button
                   type="button"
                   className="bg-red-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleDeleteEvent}
                 >
                   Excluir evento
                 </button>
