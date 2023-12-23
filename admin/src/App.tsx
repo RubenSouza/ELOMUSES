@@ -1,6 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import jwtDecode from "jwt-decode";
@@ -9,6 +8,7 @@ import Loading from "./components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/features/userLogged";
 import toast from "react-hot-toast";
+import Main from "./pages/Main";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,12 +57,12 @@ function App() {
       // <div className={`${darkMode === "dark" ? "dark" : ""}`}>
       <div>
         <div
-          className="bg-primary-150 dark:bg-primary-500 h-screen max-h-screen 
+          className="dark:bg-primary-500 h-screen max-h-screen 
         text-primary-600 dark:text-primary-100"
         >
           {user ? (
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/*" element={<Main />} />
             </Routes>
           ) : (
             <Routes>

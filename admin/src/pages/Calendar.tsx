@@ -25,7 +25,7 @@ const CalendarPage = () => {
   }, []);
 
   return (
-    <div className="text-2xl font-black w-full h-screen">
+    <div className="text-2xl font-black w-full">
       <BasicCalendar
         events={classes}
         fetchClasses={fetchClasses}
