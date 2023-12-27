@@ -33,6 +33,13 @@ router.post(
 );
 
 router.get(
+  "/admin/search",
+  auth.required,
+  adminValidation.admin,
+  UserController.searchUsers
+);
+
+router.get(
   "/admin",
   auth.required,
   adminValidation.admin,

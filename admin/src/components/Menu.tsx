@@ -30,7 +30,7 @@ const Menu = () => {
           </div>
         </NavLink>
         <NavLink
-          to="/classes"
+          to="/schedule"
           end
           className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >

@@ -1,5 +1,21 @@
+import SearchBar from "../components/SearchBar";
+import Users from "../components/Users";
+import { useLocation } from "react-router-dom";
+import SearchedUsers from "../components/SearchedUsers";
+
 const Students = () => {
-  return <div>Students</div>;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const search = searchParams.get("search") || "";
+
+  return (
+    <div className="w-full h-[94vh] py-4">
+      <div className="flex items-center justify-between mb-6">
+        <SearchBar />
+      </div>
+      <div className="">{search ? <SearchedUsers /> : <Users />}</div>
+    </div>
+  );
 };
 
 export default Students;

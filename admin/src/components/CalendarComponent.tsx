@@ -185,7 +185,7 @@ export const BasicCalendar: React.FC<BasicCalendarProps> = ({
   };
 
   return (
-    <div className="h-screen w-full text-base">
+    <div className="h-[94vh] w-full text-base">
       <Calendar
         localizer={localizer}
         events={events}

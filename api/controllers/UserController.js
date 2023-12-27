@@ -194,7 +194,7 @@ const UserController = {
 
   async getPaginatedAdmin(req, res, next) {
     const page = req.query.page || 1;
-    const limit = 16;
+    const limit = 8;
 
     try {
       const myAggregate = User.aggregate();
@@ -297,6 +297,36 @@ const UserController = {
         return res.json({ deletado: true });
       })
       .catch(next);
+  },
+
+  async searchUsers(req, res, next) {
+    const search = req.query.search;
+    const page = req.query.page || 1;
+    const limit = 8;
+
+    const myAggregate = User.aggregate([
+      {
+        $match: {
+          $or: [
+            { name: { $regex: search, $options: "i" } },
+            { username: { $regex: search, $options: "i" } },
+            { email: { $regex: search, $options: "i" } },
+          ],
+        },
+      },
+    ]);
+
+    const options = {
+      page: page,
+      limit: limit,
+    };
+
+    try {
+      const users = await User.aggregatePaginate(myAggregate, options);
+      return res.json(users);
+    } catch (error) {
+      return res.status(401).json({ errors: error });
+    }
   },
 };
 

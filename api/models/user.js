@@ -73,25 +73,3 @@ const UserSchema = new mongoose.Schema(
 UserSchema.plugin(aggregatePaginate);
 
 module.exports = mongoose.model("User", UserSchema);
-
-// Usuário{
-// 	Nome completo
-// 	Username
-// 	Email
-//  Senha
-//  Foto de perfil
-//  Telefone
-// 	Admnistrador
-// 	Aluno
-// 	Arquivos(Array)
-// 	Pagamentos
-// 	Aulas
-// 	Notificações
-//  Contrato(
-//  1,3,6, 12 meses
-//  )
-// 	Status (
-// 		Liberado
-// 		Bloqueado
-// 	)
-// }

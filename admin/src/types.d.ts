@@ -13,6 +13,25 @@ export interface MyEvent extends Event {
 export type Student = {
   _id: string;
   name: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  contract: number;
+  status: string;
+  profilePic: string;
+};
+
+export type StudentData = {
+  docs: Student[];
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  limit: number;
+  nextPage: number | null;
+  page: number;
+  pagingCounter: number;
+  prevPage: number | null;
+  totalDocs: number;
+  totalPages: number;
 };
 
 export type SlotEvent = {

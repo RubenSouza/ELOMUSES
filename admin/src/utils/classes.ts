@@ -57,18 +57,6 @@ export const createClass = async (classItem: Class) => {
   }
 };
 
-export const getStudents = async () => {
-  try {
-    const response = await axios.get(
-      "http://localhost:3001/v1/api/users/admin",
-      config
-    );
-    return response.data.docs;
-  } catch (error) {
-    throw new Error("Erro ao buscar aluno");
-  }
-};
-
 export const updateClass = async (classItem: Class, id: string) => {
   try {
     const response = await axios.put(

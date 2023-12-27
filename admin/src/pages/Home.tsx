@@ -1,10 +1,7 @@
-import CalendarPage from "./Calendar";
-
 const Home = () => {
   return (
-    <div className="text-2xl font-black">
-      {/* <h1>Home</h1> */}
-      <CalendarPage />
+    <div className="">
+      <h1>Dashboard</h1>
     </div>
   );
 };
