@@ -4,6 +4,7 @@ import Home from "./Home";
 import Students from "./Students";
 import Navbar from "../components/Navbar";
 import Schedule from "./Schedule";
+import AddStudent from "./AddStudent";
 
 const Main = () => {
   return (
@@ -11,7 +12,7 @@ const Main = () => {
       <div className="border-r-2 border-r-slate-100 ">
         <Menu />
       </div>
-      <div className="flex-1 bg-slate-50 px-8">
+      <div className="flex-1 bg-slate-50 px-8 h-screen">
         <div className="">
           <Navbar />
         </div>
@@ -19,6 +20,7 @@ const Main = () => {
           <Route path="/" element={<Home />} />
           <Route path="/students" element={<Students />} />
           <Route path="/schedule" element={<Schedule />} />
+          <Route path="/add-student" element={<AddStudent />} />
         </Routes>
       </div>
     </div>

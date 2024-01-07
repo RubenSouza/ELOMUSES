@@ -18,16 +18,20 @@ const Navbar = () => {
     case "students":
       title = "Alunos";
       break;
+    case "add-student":
+      title = "Cadastrar aluno";
+      break;
     case "files":
       title = "Arquivos";
       break;
+
     default:
       title = "Dashboard";
       break;
   }
 
   return (
-    <div className="my-3 flex justify-between items-center">
+    <div className="my-4 flex justify-between items-center">
       <h1 className="text-2xl font-bold">{title}</h1>
       <div className="flex space-x-3 items-center">
         <div className="cursor-pointer">

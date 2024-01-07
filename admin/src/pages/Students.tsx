@@ -9,7 +9,7 @@ const Students = () => {
   const search = searchParams.get("search") || "";
 
   return (
-    <div className="w-full h-[94vh] py-4">
+    <div className="w-full">
       <div className="flex items-center justify-between mb-6">
         <SearchBar />
       </div>

@@ -11,6 +11,7 @@ const ClassValidation = {
       status: Joi.string().required(),
       start: Joi.date().required(),
       end: Joi.date().required(),
+      renewalDate: Joi.string().allow(null).optional(),
     }),
   },
   update: {

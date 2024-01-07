@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
-// const cron = require("node-cron");
+const cron = require("node-cron");
 
 //Start express
 
@@ -30,13 +30,6 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-
-// // NODE-CRON para execução a cada 2 minutos para teste
-// cron.schedule("*/2 * * * *", () => {
-//   // Lógica da tarefa a ser executada a cada 2 minutos
-//   console.log("Tarefa a cada 2 minutos executada!");
-//   // Aqui você pode adicionar a lógica que deseja testar
-// });
 
 //JSON
 
@@ -74,5 +67,12 @@ connectDB().then(() => {
   app.listen(PORT, error => {
     if (error) throw error;
     console.log(`Server is running in http://localhost:${PORT}`);
+
+    // const ClassController = require("./controllers/ClassController");
+
+    // cron.schedule("*/2 * * * *", () => {
+    //   console.log("Tarefa a cada 2 minutos executada!");
+    //   ClassController.renewDates();
+    // });
   });
 });

@@ -21,7 +21,7 @@ router.get(
   "/schedule",
   auth.required,
   adminValidation.admin,
-  ClassController.getThreeMonths
+  ClassController.getSixMonths
 ); //tested
 
 // router.get("/:id", auth.required, ClassController.show);

@@ -9,6 +9,8 @@ import {
   BsFillPeopleFill,
 } from "react-icons/bs";
 
+import { IoIosAddCircleOutline } from "react-icons/io";
+
 const Menu = () => {
   const activeStyle =
     "transition ease-in-out delay-100 hover:scale-105 bg-slate-200/50 border-button-100 rounded-lg w-full px-4 py-2";
@@ -47,6 +49,16 @@ const Menu = () => {
           <div className="flex items-center space-x-1">
             <BsFillPeopleFill className="w-5 h-5" />
             <p>Alunos</p>
+          </div>
+        </NavLink>
+        <NavLink
+          to="/add-student"
+          end
+          className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          <div className="flex items-center space-x-1">
+            <IoIosAddCircleOutline className="w-5 h-5" />
+            <p>Cadastrar aluno</p>
           </div>
         </NavLink>
         <NavLink

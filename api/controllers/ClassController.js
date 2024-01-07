@@ -21,12 +21,13 @@ const ClassController = {
           status,
           start: dataV.toISOString(),
           end: endV.toISOString(),
+          renewalDate: null,
         });
 
-        const tresMesesDepois = new Date();
-        tresMesesDepois.setMonth(tresMesesDepois.getMonth() + 3);
+        let oneYearAfter = new Date(dataV);
+        oneYearAfter.setFullYear(oneYearAfter.getFullYear() + 1);
 
-        while (dataV < tresMesesDepois) {
+        while (dataV < oneYearAfter) {
           dataV.setUTCDate(dataV.getUTCDate() + 7);
           endV.setUTCDate(endV.getUTCDate() + 7);
 
@@ -39,6 +40,7 @@ const ClassController = {
             status,
             start: dataV.toISOString(),
             end: endV.toISOString(),
+            renewalDate: oneYearAfter.toISOString(),
           });
         }
 
@@ -53,6 +55,7 @@ const ClassController = {
           status,
           start,
           end,
+          renewalDate: null,
         });
 
         return res.json({ newClass });
@@ -61,6 +64,62 @@ const ClassController = {
       return next(err);
     }
   },
+
+  //RENEW DATES
+
+  // async renewDates(req, res, next) {
+  //   try {
+  //     const currentDate = new Date();
+
+  //     const classesToRenew = await Class.find({
+  //       renewalDate: { $lt: currentDate.toISOString() },
+  //     });
+
+  //     if (classesToRenew.length === 0) {
+  //       return res.json({ message: "Não existem aulas a renovar" });
+  //     }
+
+  //     for (const classObj of classesToRenew) {
+  //       if (classObj.tipo === "Aula recorrente") {
+  //         let dataV = new Date(classObj.start);
+  //         let endV = new Date(classObj.end);
+
+  //         const tresMesesDepois = new Date();
+  //         tresMesesDepois.setMonth(tresMesesDepois.getMonth() + 3);
+
+  //         while (dataV < tresMesesDepois) {
+  //           await Class.create({
+  //             aluno: classObj.aluno,
+  //             title: classObj.title,
+  //             sobre: classObj.sobre,
+  //             tipo: classObj.tipo,
+  //             assunto: classObj.assunto,
+  //             status: classObj.status,
+  //             start: dataV.toISOString(),
+  //             end: endV.toISOString(),
+  //             renewalDate: tresMesesDepois.toISOString(),
+  //           });
+
+  //           // Adicionar uma semana
+  //           dataV.setUTCDate(dataV.getUTCDate() + 7);
+  //           endV.setUTCDate(endV.getUTCDate() + 7);
+  //         }
+
+  //         // Atualizar a data de renovação da aula original
+  //         const tresMesesDepoisBase = new Date(classObj.renewalDate);
+  //         tresMesesDepoisBase.setMonth(tresMesesDepoisBase.getMonth() + 3);
+
+  //         classObj.renewalDate = tresMesesDepoisBase.toISOString();
+  //         await classObj.save();
+  //       }
+  //     }
+
+  //     return res.json({ message: "Aulas renovadas com sucesso." });
+  //   } catch (err) {
+  //     console.error("Erro ao verificar e renovar aulas:", err);
+  //     return res.json({ error: "Erro ao renovar aulas." });
+  //   }
+  // },
 
   // UPDATE
 
@@ -129,11 +188,11 @@ const ClassController = {
     }
   },
 
-  async getThreeMonths(req, res, next) {
+  async getSixMonths(req, res, next) {
     try {
       const currentDate = new Date();
       const threeMonthsAgo = new Date();
-      threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+      threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 6);
 
       const allClasses = await Class.find({
         $or: [

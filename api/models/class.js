@@ -32,6 +32,11 @@ const AulaSchema = new mongoose.Schema(
       required: true,
     },
 
+    renewalDate: {
+      type: String,
+      required: false,
+    },
+
     assunto: {
       type: String,
       required: false,
