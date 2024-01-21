@@ -1,7 +1,81 @@
+import { createStudent } from "../utils/students";
+
 const AddStudent = () => {
+  const handleAddStudent = async () => {
+    const responavel = (
+      document.getElementById("responsavel") as HTMLInputElement
+    ).value;
+    const aluno = (document.getElementById("aluno") as HTMLInputElement).value;
+    const user = (document.getElementById("usuario") as HTMLInputElement).value;
+    const senha = (document.getElementById("senha") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const telefone = (document.getElementById("telefone") as HTMLInputElement)
+      .value;
+    const profissao = (document.getElementById("profissao") as HTMLInputElement)
+      .value;
+    const rg = (document.getElementById("rg") as HTMLInputElement).value;
+    const cpf = (document.getElementById("cpf") as HTMLInputElement).value;
+    const nascimento = (
+      document.getElementById("nascimento") as HTMLInputElement
+    ).value;
+    const status = (document.getElementById("status") as HTMLInputElement)
+      .value;
+    const permissao = (document.getElementById("permissao") as HTMLInputElement)
+      .value;
+    const contrato = (document.getElementById("contrato") as HTMLInputElement)
+      .value;
+
+    const endereco = (document.getElementById("endereco") as HTMLInputElement)
+      .value;
+    const numero = (document.getElementById("numero") as HTMLInputElement)
+      .value;
+    const complemento = (
+      document.getElementById("complemento") as HTMLInputElement
+    ).value;
+    const cep = (document.getElementById("cep") as HTMLInputElement).value;
+    const cidade = (document.getElementById("cidade") as HTMLInputElement)
+      .value;
+    const bairro = (document.getElementById("bairro") as HTMLInputElement)
+      .value;
+    const estado = (document.getElementById("estado") as HTMLInputElement)
+      .value;
+
+    const data = {
+      responsible: responavel,
+      name: aluno,
+      username: user,
+      password: senha,
+      email: email,
+      phone: telefone,
+      profession: profissao,
+      RG: rg.toString(),
+      CPF: cpf.toString(),
+      birthDate: nascimento,
+      status: status,
+      isAdmin: permissao,
+      contract: contrato,
+      adress: endereco,
+      number: numero,
+      complement: complemento,
+      zipCode: cep,
+      city: cidade,
+      neighborhood: bairro,
+      state: estado,
+    };
+
+    console.log(data);
+    await createStudent(data);
+  };
+
   return (
     <div className="w-full flex">
-      <form className="w-full">
+      <form
+        className="w-full"
+        onSubmit={e => {
+          e.preventDefault();
+          handleAddStudent();
+        }}
+      >
         <div className="rounded-md border border-slate-300 p-6">
           <h2 className="font-bold">Dados Pessoais</h2>
         </div>
@@ -9,13 +83,14 @@ const AddStudent = () => {
           {/* Financeiro e Nome do Aluno */}
           <div className="flex space-x-4">
             <div className="w-full">
-              <label htmlFor="nome" className="block text-sm font-bold ">
+              <label htmlFor="responsavel" className="block text-sm font-bold ">
                 Responsável Financeiro:
               </label>
               <input
                 type="text"
-                id="nome"
-                name="nome"
+                id="responsavel"
+                name="responsavel"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="Nome Completo"
               />
@@ -28,6 +103,7 @@ const AddStudent = () => {
                 type="text"
                 id="aluno"
                 name="aluno"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="Nome Completo"
               />
@@ -36,13 +112,14 @@ const AddStudent = () => {
           {/*  Usuário e Senha */}
           <div className="flex space-x-4">
             <div className="w-full">
-              <label htmlFor="profissao" className="block text-sm font-bold">
+              <label htmlFor="usuario" className="block text-sm font-bold">
                 Nome de Usuário:
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="usuario"
+                name="usuario"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="Nome de Usuário"
               />
@@ -53,8 +130,9 @@ const AddStudent = () => {
               </label>
               <input
                 type="password"
-                id="password"
-                name="password"
+                id="senha"
+                name="senha"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="Senha"
               />
@@ -63,13 +141,14 @@ const AddStudent = () => {
           {/* Email Telefone e Profissão */}
           <div className="flex space-x-4">
             <div className="w-full">
-              <label htmlFor="telefone" className="block text-sm font-bold">
+              <label htmlFor="email" className="block text-sm font-bold">
                 E-mail:
               </label>
               <input
                 type="email"
                 id="email"
                 name="email"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="E-mail"
               />
@@ -83,6 +162,7 @@ const AddStudent = () => {
                   type="text"
                   id="telefone"
                   name="telefone"
+                  required
                   className="border border-gray-400 rounded w-full p-2"
                   placeholder="Telefone"
                 />
@@ -95,6 +175,7 @@ const AddStudent = () => {
                   type="text"
                   id="profissao"
                   name="profissao"
+                  required
                   className="border border-gray-400 rounded w-full p-2"
                   placeholder="Profissão"
                 />
@@ -108,9 +189,10 @@ const AddStudent = () => {
                 RG:
               </label>
               <input
-                type="text"
+                type="number"
                 id="rg"
                 name="rg"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="RG"
               />
@@ -120,9 +202,10 @@ const AddStudent = () => {
                 CPF:
               </label>
               <input
-                type="text"
+                type="number"
                 id="cpf"
                 name="cpf"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="CPF"
               />
@@ -135,6 +218,7 @@ const AddStudent = () => {
                 type="date"
                 id="nascimento"
                 name="nascimento"
+                required
                 className="border border-gray-400 rounded w-full p-2"
                 placeholder="Data de Nascimento"
               />
@@ -146,30 +230,30 @@ const AddStudent = () => {
               <label htmlFor="status" className="block text-sm font-bold">
                 Status do Aluno
               </label>
-              <select>
-                <option value="ativo">Ativo</option>
-                <option value="inativo">Inativo</option>
+              <select id="status">
+                <option value="Liberado">Liberado</option>
+                <option value="Bloqueado">Bloqueado</option>
               </select>
             </div>
             <div className="w-full flex flex-col">
-              <label htmlFor="permission" className="block text-sm font-bold">
+              <label htmlFor="permissao" className="block text-sm font-bold">
                 Permissão de Acesso
               </label>
-              <select>
-                <option value="student">Aluno</option>
-                <option value="admin">Administrador</option>
+              <select id="permissao">
+                <option value="true">Aluno</option>
+                <option value="false">Administrador</option>
               </select>
             </div>
             <div className="w-full flex flex-col">
-              <label htmlFor="status" className="block text-sm font-bold">
+              <label htmlFor="contrato" className="block text-sm font-bold">
                 Contrato
               </label>
-              <select>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="3">3</option>
-                <option value="6">6</option>
-                <option value="12">12</option>
+              <select id="contrato">
+                <option value="0">Inativo</option>
+                <option value="1">Mensal</option>
+                <option value="3">3 Meses</option>
+                <option value="6">6 Meses</option>
+                <option value="12">1 Ano</option>
               </select>
             </div>
           </div>
@@ -190,6 +274,7 @@ const AddStudent = () => {
                     type="text"
                     id="endereco"
                     name="endereco"
+                    required
                     className="border border-gray-400 rounded w-full p-2"
                     placeholder="Endereço"
                   />
@@ -204,6 +289,7 @@ const AddStudent = () => {
                     type="text"
                     id="numero"
                     name="numero"
+                    required
                     className="border border-gray-400 rounded w-full p-2"
                     placeholder="Número"
                   />
@@ -219,6 +305,7 @@ const AddStudent = () => {
                     type="text"
                     id="complemento"
                     name="complemento"
+                    required
                     className="border border-gray-400 rounded w-full p-2"
                     placeholder="Complemento"
                   />
@@ -234,6 +321,7 @@ const AddStudent = () => {
                   type="text"
                   id="cep"
                   name="cep"
+                  required
                   className="border border-gray-400 rounded w-full p-2"
                   placeholder="CEP"
                 />
@@ -246,6 +334,7 @@ const AddStudent = () => {
                   type="text"
                   id="cidade"
                   name="cidade"
+                  required
                   className="border border-gray-400 rounded w-full p-2"
                   placeholder="Cidade"
                 />
@@ -258,6 +347,7 @@ const AddStudent = () => {
                   type="text"
                   id="bairro"
                   name="bairro"
+                  required
                   className="border border-gray-400 rounded w-full p-2"
                   placeholder="Bairro"
                 />
@@ -270,6 +360,7 @@ const AddStudent = () => {
                   type="text"
                   id="estado"
                   name="estado"
+                  required
                   className="border border-gray-400 rounded w-full p-2"
                   placeholder="Estado"
                 />
@@ -281,6 +372,7 @@ const AddStudent = () => {
           <button
             className="bg-blue-500 text-slate-100 
         p-2 rounded-md w-36 my-4"
+            type="submit"
           >
             Cadastrar
           </button>

@@ -18,6 +18,9 @@ const Navbar = () => {
     case "students":
       title = "Alunos";
       break;
+    case "students/student/":
+      title = "Aluno";
+      break;
     case "add-student":
       title = "Cadastrar aluno";
       break;
@@ -28,6 +31,18 @@ const Navbar = () => {
     default:
       title = "Dashboard";
       break;
+  }
+
+  const studentRegex = /^students\/student\/[a-fA-F0-9]{24}$/;
+  const paymentRegex = /^students\/student\/[a-fA-F0-9]{24}\/payments$/;
+  const filesRegex = /^students\/student\/[a-fA-F0-9]{24}\/files$/;
+
+  if (
+    studentRegex.test(path) ||
+    paymentRegex.test(path) ||
+    filesRegex.test(path)
+  ) {
+    title = "Aluno";
   }
 
   return (

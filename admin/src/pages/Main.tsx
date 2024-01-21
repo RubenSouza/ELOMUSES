@@ -5,6 +5,7 @@ import Students from "./Students";
 import Navbar from "../components/Navbar";
 import Schedule from "./Schedule";
 import AddStudent from "./AddStudent";
+import Student from "./Student";
 
 const Main = () => {
   return (
@@ -19,6 +20,7 @@ const Main = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/students" element={<Students />} />
+          <Route path="/students/student/:id/*" element={<Student />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/add-student" element={<AddStudent />} />
         </Routes>

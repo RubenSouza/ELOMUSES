@@ -124,15 +124,27 @@ const UserController = {
 
   async register(req, res, next) {
     const {
+      responsible,
       name,
       username,
-      email,
       password,
+      email,
       phone,
-      profilePic,
-      isAdmin,
+      profession,
+      RG,
+      CPF,
+      birthDate,
       status,
+      isAdmin,
       contract,
+      adress,
+      number,
+      complement,
+      zipCode,
+      city,
+      neighborhood,
+      state,
+      profilePic,
     } = req.body;
     let encryptedPassword = CryptoJS.AES.encrypt(
       password,
@@ -141,15 +153,27 @@ const UserController = {
 
     try {
       const user = await User.create({
+        responsible,
         name,
         username,
         email,
         password: encryptedPassword,
         phone,
-        profilePic,
+        profession,
+        RG,
+        CPF,
+        birthDate,
         status,
-        contract,
         isAdmin,
+        contract,
+        adress,
+        number,
+        complement,
+        zipCode,
+        city,
+        neighborhood,
+        state,
+        profilePic,
       });
 
       const { password, ...info } = user._doc;
@@ -215,16 +239,27 @@ const UserController = {
 
   async updateAdmin(req, res, next) {
     const {
+      responsible,
       name,
       username,
-      email,
       password,
+      email,
       phone,
-      profilePic,
-      isAdmin,
+      profession,
+      RG,
+      CPF,
+      birthDate,
       status,
-      files,
+      isAdmin,
       contract,
+      adress,
+      number,
+      complement,
+      zipCode,
+      city,
+      neighborhood,
+      state,
+      profilePic,
     } = req.body;
 
     let encryptedPassword = CryptoJS.AES.encrypt(
@@ -238,20 +273,56 @@ const UserController = {
         return res.status(401).json({ errors: "Usuário não registrado" });
       }
 
+      if (responsible) {
+        user.reponsible = reponsible;
+      }
       if (name) {
         user.name = name;
       }
       if (username) {
         user.username = username;
       }
-      if (email) {
-        user.email = email;
-      }
       if (password) {
         user.password = encryptedPassword;
       }
+      if (email) {
+        user.email = email;
+      }
       if (phone) {
         user.phone = phone;
+      }
+      if (profession) {
+        user.profession = profession;
+      }
+      if (RG) {
+        user.RG = RG;
+      }
+      if (CPF) {
+        user.CPF = CPF;
+      }
+      if (birthDate) {
+        user.birthDate = birthDate;
+      }
+      if (adress) {
+        user.adress = adress;
+      }
+      if (number) {
+        user.number = number;
+      }
+      if (complement) {
+        user.complement = complement;
+      }
+      if (zipCode) {
+        user.zipCode = zipCode;
+      }
+      if (city) {
+        user.city = city;
+      }
+      if (neighborhood) {
+        user.neighborhood = neighborhood;
+      }
+      if (state) {
+        user.state = state;
       }
       if (profilePic) {
         user.profilePic = profilePic;

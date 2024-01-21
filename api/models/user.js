@@ -6,12 +6,10 @@ const UserSchema = new mongoose.Schema(
     responsible: {
       type: String,
       required: true,
-      trim: true,
     },
     name: {
       type: String,
       required: true,
-      trim: true,
     },
     username: {
       type: String,
@@ -44,11 +42,13 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: false,
       trim: true,
+      unique: true,
     },
     CPF: {
       type: String,
       required: false,
       trim: true,
+      unique: true,
     },
     birthDate: {
       type: String,
@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      default: "Liberado",
+      default: "Bloqueado",
     },
     isAdmin: {
       type: Boolean,
@@ -69,37 +69,37 @@ const UserSchema = new mongoose.Schema(
     },
     adress: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     number: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     complement: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     zipCode: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     city: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     neighborhood: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     state: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
     files: {

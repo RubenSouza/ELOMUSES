@@ -21,6 +21,21 @@ export const getAllStudents = async () => {
   }
 };
 
+export const createStudent = async (data: any) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:3001/v1/api/users/admin/register",
+      data,
+      config
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Erro ao criar aluno");
+  }
+};
+
 export const getPaginatedStudents = async (page: string) => {
   try {
     const response = await axios.get(

@@ -43,7 +43,6 @@ const Menu = () => {
         </NavLink>
         <NavLink
           to="/students"
-          end
           className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
           <div className="flex items-center space-x-1">

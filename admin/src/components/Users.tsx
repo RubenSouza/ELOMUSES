@@ -3,6 +3,7 @@ import { getPaginatedStudents } from "../utils/students";
 import { useSelector } from "react-redux";
 import Paginate from "./Paginate";
 import { StudentData } from "../types";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [data, setData] = useState<StudentData>();
@@ -63,10 +64,14 @@ const Users = () => {
                         <div className="w-10 h-10 rounded-full bg-blue-300 border border-slate-300"></div>
                       )}
                     </div>
-                    <div>
-                      <p className="font-semibold ">{student?.name}</p>
-                      <p className="text-sm text-slate-400">{student?.email}</p>
-                    </div>
+                    <Link to={`/students/student/${student?._id}`}>
+                      <div>
+                        <p className="font-semibold ">{student?.name}</p>
+                        <p className="text-sm text-slate-400">
+                          {student?.email}
+                        </p>
+                      </div>
+                    </Link>
                   </div>
                 </td>
                 <td className="py-5 px-8 ">{student?.phone}</td>
