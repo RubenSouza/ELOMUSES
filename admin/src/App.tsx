@@ -43,7 +43,7 @@ function App() {
               toast.error("Você não é um administrador.");
             }
           })
-          .catch(error => {
+          .catch(() => {
             dispatch(setUser(null));
             toast.error("Usuário não autorizado");
           });

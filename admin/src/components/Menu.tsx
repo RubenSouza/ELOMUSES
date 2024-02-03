@@ -1,13 +1,7 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { BiCalendarCheck, BiFile, BiHomeSmile } from "react-icons/bi";
-import {
-  BsClipboard2,
-  BsClipboard2Check,
-  BsClipboard2Data,
-  BsClipboard2Fill,
-  BsFillPeopleFill,
-} from "react-icons/bs";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 import { IoIosAddCircleOutline } from "react-icons/io";
 
