@@ -7,6 +7,7 @@ import axios from "axios";
 import DarkMode from "../components/DarkMode";
 import { setUser } from "../redux/features/userLogged";
 import { useSelector, useDispatch } from "react-redux";
+const URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Login = () => {
 
     try {
       const fetchUserLogin = await axios.post(
-        "http://localhost:3001/v1/api/users/admin/login",
+        `${URL}/users/admin/login`,
         userData
       );
       if (fetchUserLogin) {

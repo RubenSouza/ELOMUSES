@@ -3,6 +3,7 @@ import moment from "moment-timezone";
 const user = localStorage.getItem("user");
 const jsonUser = user ? JSON.parse(user) : null;
 const accessToken = jsonUser?.accessToken.toString();
+const URL = import.meta.env.VITE_API_URL;
 
 const config = {
   headers: {
@@ -22,10 +23,7 @@ type Class = {
 
 export const getClasses = async () => {
   try {
-    const response = await axios.get(
-      "http://localhost:3001/v1/api/classes/schedule",
-      config
-    );
+    const response = await axios.get(`${URL}/classes/schedule`, config);
 
     const classes = response.data.allClasses.map((classItem: Class) => {
       const start = moment(classItem.start).toDate();
@@ -47,7 +45,7 @@ export const getClasses = async () => {
 export const createClass = async (classItem: Class) => {
   try {
     const response = await axios.post(
-      "http://localhost:3001/v1/api/classes/register",
+      `${URL}/classes/register`,
       classItem,
       config
     );
@@ -59,11 +57,7 @@ export const createClass = async (classItem: Class) => {
 
 export const updateClass = async (classItem: Class, id: string) => {
   try {
-    const response = await axios.put(
-      `http://localhost:3001/v1/api/classes/${id}`,
-      classItem,
-      config
-    );
+    const response = await axios.put(`${URL}/classes/${id}`, classItem, config);
     return response.data;
   } catch (error) {
     throw new Error("Erro ao atualizar a aula");
@@ -72,10 +66,7 @@ export const updateClass = async (classItem: Class, id: string) => {
 
 export const deleteClass = async (id: string) => {
   try {
-    const response = await axios.delete(
-      `http://localhost:3001/v1/api/classes/${id}`,
-      config
-    );
+    const response = await axios.delete(`${URL}/classes/${id}`, config);
     return response.data;
   } catch (error) {
     throw new Error("Erro ao deletar a aula");

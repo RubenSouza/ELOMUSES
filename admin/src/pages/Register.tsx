@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { BsGoogle, BsGithub } from "react-icons/bs";
 import axios from "axios";
 import DarkMode from "../components/DarkMode";
+const URL = import.meta.env.VITE_API_URL;
 
 const Register = () => {
   const [username, setUsername] = useState<string>();
@@ -21,10 +22,7 @@ const Register = () => {
     };
 
     try {
-      const fetchUser = await axios.post(
-        "http://localhost:3001/v1/api/users/register",
-        registerData
-      );
+      const fetchUser = await axios.post(`${URL}/users/register`, registerData);
 
       if (fetchUser) {
         window.location.href = "/";
