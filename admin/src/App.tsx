@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/features/userLogged";
 import toast from "react-hot-toast";
 import Main from "./pages/Main";
+const URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function App() {
       } else {
         axios
           .post(
-            "http://localhost:3001/v1/api/users/admin/verify-token",
+            `${URL}/users/admin/verify-token`,
             {},
             {
               headers: {

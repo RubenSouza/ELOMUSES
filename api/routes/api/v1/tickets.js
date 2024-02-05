@@ -5,12 +5,7 @@ const auth = require("../../auth");
 
 /* TICKET ROUTES */
 
-router.post(
-  "/register",
-  auth.required,
-  adminValidation.admin,
-  TicketController.register
-);
+router.post("/register", TicketController.register);
 
 router.get("/", auth.required, adminValidation.admin, TicketController.index);
 
