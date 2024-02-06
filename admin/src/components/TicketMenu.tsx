@@ -42,17 +42,6 @@ const TicketMenu = () => {
             Cancelado
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to={`/tickets/students`}
-            end
-            className={({ isActive }) =>
-              isActive ? activeStyle : inactiveStyle
-            }
-          >
-            Alunos
-          </NavLink>
-        </li>
       </ul>
     </div>
   );
