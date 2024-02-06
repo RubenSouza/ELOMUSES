@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Schedule from "./Schedule";
 import AddStudent from "./AddStudent";
 import Student from "./Student";
+import Tickets from "./Tickets";
 
 const Main = () => {
   return (
@@ -23,6 +24,7 @@ const Main = () => {
           <Route path="/students/student/:id/*" element={<Student />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/add-student" element={<AddStudent />} />
+          <Route path="/tickets/*" element={<Tickets />} />
         </Routes>
       </div>
     </div>

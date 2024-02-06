@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const TicketSchema = new mongoose.Schema(
   {
@@ -16,7 +17,7 @@ const TicketSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Pago", "Pendente", "Cancelado"],
+      enum: ["Confirmado", "Pendente", "Cancelado"],
       default: "Pendente",
     },
   },
@@ -24,5 +25,7 @@ const TicketSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+TicketSchema.plugin(aggregatePaginate);
 
 module.exports = mongoose.model("Ticket", TicketSchema);

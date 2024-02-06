@@ -45,6 +45,15 @@ const Navbar = () => {
     title = "Aluno";
   }
 
+  if (
+    path === "tickets" ||
+    path === "tickets/confirmed" ||
+    path === "tickets/cancelled" ||
+    path === "tickets/students"
+  ) {
+    title = "Ingressos";
+  }
+
   return (
     <div className="my-4 flex justify-between items-center">
       <h1 className="text-2xl font-bold">{title}</h1>

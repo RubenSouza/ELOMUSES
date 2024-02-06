@@ -44,3 +44,26 @@ interface BasicCalendarProps {
   fetchClasses: () => Promise<void>;
   students: Student[];
 }
+
+export type Ticket = {
+  _id: string;
+  aluno: string;
+  quantidade: number;
+  valor: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TicketData = {
+  docs: Ticket[];
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  limit: number;
+  nextPage: number | null;
+  page: number;
+  pagingCounter: number;
+  prevPage: number | null;
+  totalDocs: number;
+  totalPages: number;
+};
