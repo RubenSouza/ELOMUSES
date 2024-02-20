@@ -77,9 +77,9 @@ const Users = () => {
                 <td className="py-5 px-8 ">{student?.phone}</td>
                 <td className="py-5 px-8 ">{student?.createdAt}</td>
                 <td className="py-5 px-8 flex space-x-1">
-                  <p>ed</p>
-                  <p>ex</p>
-                  <p>bl</p>
+                  <p>edi</p>
+                  <p>exc</p>
+                  <p>blq</p>
                 </td>
               </tr>
             ))}
