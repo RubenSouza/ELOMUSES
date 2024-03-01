@@ -1,6 +1,17 @@
 const mongoose = require("mongoose");
 const Ticket = mongoose.model("Ticket");
 
+const getSort = sort => {
+  switch (sort) {
+    case "new":
+      return { createdAt: 1 };
+    case "old":
+      return { createdAt: -1 };
+    default:
+      return { createdAt: 1 };
+  }
+};
+
 const TicketController = {
   async register(req, res, next) {
     const { aluno, quantidade, valor, status } = req.body;
@@ -41,6 +52,7 @@ const TicketController = {
 
   async indexPending(req, res, next) {
     const page = req.query.page || 1;
+    const search = req.query.search || "";
     const limit = 7;
 
     try {
@@ -48,6 +60,7 @@ const TicketController = {
         {
           $match: {
             status: "Pendente",
+            aluno: { $regex: search, $options: "i" },
           },
         },
       ]);
@@ -55,6 +68,7 @@ const TicketController = {
       const options = {
         page: page,
         limit: limit,
+        sort: getSort(req.query.sort),
       };
 
       const tickets = await Ticket.aggregatePaginate(myAggregate, options);
@@ -67,6 +81,7 @@ const TicketController = {
 
   async indexConfirmed(req, res, next) {
     const page = req.query.page || 1;
+    const search = req.query.search || "";
     const limit = 7;
 
     try {
@@ -74,6 +89,7 @@ const TicketController = {
         {
           $match: {
             status: "Confirmado",
+            aluno: { $regex: search, $options: "i" },
           },
         },
       ]);
@@ -81,6 +97,7 @@ const TicketController = {
       const options = {
         page: page,
         limit: limit,
+        sort: getSort(req.query.sort),
       };
 
       const tickets = await Ticket.aggregatePaginate(myAggregate, options);
@@ -93,6 +110,7 @@ const TicketController = {
 
   async indexCancelled(req, res, next) {
     const page = req.query.page || 1;
+    const search = req.query.search || "";
     const limit = 7;
 
     try {
@@ -100,6 +118,7 @@ const TicketController = {
         {
           $match: {
             status: "Cancelado",
+            aluno: { $regex: search, $options: "i" },
           },
         },
       ]);
@@ -107,6 +126,7 @@ const TicketController = {
       const options = {
         page: page,
         limit: limit,
+        sort: getSort(req.query.sort),
       };
 
       const tickets = await Ticket.aggregatePaginate(myAggregate, options);

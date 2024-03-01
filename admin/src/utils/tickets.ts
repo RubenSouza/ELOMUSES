@@ -19,10 +19,10 @@ export const getAllTickets = async () => {
   }
 };
 
-export const getPendingTickets = async (page: string) => {
+export const getPendingTickets = async (page: string, search: string) => {
   try {
     const response = await axios.get(
-      `${URL}/tickets/pending?page=${page}`,
+      `${URL}/tickets/pending?page=${page}&search=${search}`,
       config
     );
     return response.data;
@@ -31,10 +31,10 @@ export const getPendingTickets = async (page: string) => {
   }
 };
 
-export const getConfirmedTickets = async (page: string) => {
+export const getConfirmedTickets = async (page: string, search: string) => {
   try {
     const response = await axios.get(
-      `${URL}/tickets/confirmed?page=${page}`,
+      `${URL}/tickets/confirmed?page=${page}&search=${search}`,
       config
     );
     return response.data;
@@ -43,10 +43,10 @@ export const getConfirmedTickets = async (page: string) => {
   }
 };
 
-export const getCancelledTickets = async (page: string) => {
+export const getCancelledTickets = async (page: string, search: string) => {
   try {
     const response = await axios.get(
-      `${URL}/tickets/cancelled?page=${page}`,
+      `${URL}/tickets/cancelled?page=${page}&search=${search}`,
       config
     );
     return response.data;

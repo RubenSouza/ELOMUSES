@@ -17,12 +17,13 @@ const Cancelled = () => {
   const [ticketClicked, setTicketClicked] = useState("");
   const [statusClicked, setStatusClicked] = useState(false);
   const page = useSelector((state: any) => state.querys.page);
+  const search = useSelector((state: any) => state.querys.search);
 
   useEffect(() => {
     setTimeout(() => {
       const fetchTickets = async () => {
         try {
-          const ticketsData = await getCancelledTickets(page);
+          const ticketsData = await getCancelledTickets(page, search);
           setData(ticketsData);
         } catch (error) {
           console.error("Erro ao buscar ingressos:", error);
@@ -40,7 +41,7 @@ const Cancelled = () => {
       };
       fetchTotalTickets();
     }, 500);
-  }, [page, statusClicked, ticketClicked, data, totalTickets]);
+  }, [page, statusClicked, ticketClicked, totalTickets, search]);
 
   const handleStatus = (ticket: string) => {
     setStatusClicked(!statusClicked);
