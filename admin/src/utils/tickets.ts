@@ -19,10 +19,14 @@ export const getAllTickets = async () => {
   }
 };
 
-export const getPendingTickets = async (page: string, search: string) => {
+export const getPendingTickets = async (
+  page: string,
+  search: string,
+  sort: string
+) => {
   try {
     const response = await axios.get(
-      `${URL}/tickets/pending?page=${page}&search=${search}`,
+      `${URL}/tickets/pending?page=${page}&search=${search}&sort=${sort}`,
       config
     );
     return response.data;
@@ -31,10 +35,14 @@ export const getPendingTickets = async (page: string, search: string) => {
   }
 };
 
-export const getConfirmedTickets = async (page: string, search: string) => {
+export const getConfirmedTickets = async (
+  page: string,
+  search: string,
+  sort: string
+) => {
   try {
     const response = await axios.get(
-      `${URL}/tickets/confirmed?page=${page}&search=${search}`,
+      `${URL}/tickets/confirmed?page=${page}&search=${search}&sort=${sort}`,
       config
     );
     return response.data;
@@ -43,10 +51,14 @@ export const getConfirmedTickets = async (page: string, search: string) => {
   }
 };
 
-export const getCancelledTickets = async (page: string, search: string) => {
+export const getCancelledTickets = async (
+  page: string,
+  search: string,
+  sort: string
+) => {
   try {
     const response = await axios.get(
-      `${URL}/tickets/cancelled?page=${page}&search=${search}`,
+      `${URL}/tickets/cancelled?page=${page}&search=${search}&sort=${sort}`,
       config
     );
     return response.data;
@@ -55,27 +67,36 @@ export const getCancelledTickets = async (page: string, search: string) => {
   }
 };
 
-export const getTotalCancelledTickets = async () => {
+export const getTotalCancelledTickets = async (search: string) => {
   try {
-    const response = await axios.get(`${URL}/tickets/cancelled/total`, config);
+    const response = await axios.get(
+      `${URL}/tickets/cancelled/total?search=${search}`,
+      config
+    );
     return response.data.totalTickets;
   } catch (error) {
     throw new Error("Erro ao buscar total de tickets cancelados");
   }
 };
 
-export const getTotalConfirmedTickets = async () => {
+export const getTotalConfirmedTickets = async (search: string) => {
   try {
-    const response = await axios.get(`${URL}/tickets/confirmed/total`, config);
+    const response = await axios.get(
+      `${URL}/tickets/confirmed/total?search=${search}`,
+      config
+    );
     return response.data.totalTickets;
   } catch (error) {
     throw new Error("Erro ao buscar total de tickets confirmados");
   }
 };
 
-export const getTotalPendingTickets = async () => {
+export const getTotalPendingTickets = async (search: string) => {
   try {
-    const response = await axios.get(`${URL}/tickets/pending/total`, config);
+    const response = await axios.get(
+      `${URL}/tickets/pending/total?search=${search}`,
+      config
+    );
     return response.data.totalTickets;
   } catch (error) {
     throw new Error("Erro ao buscar total de tickets pendentes");

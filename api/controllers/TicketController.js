@@ -3,10 +3,10 @@ const Ticket = mongoose.model("Ticket");
 
 const getSort = sort => {
   switch (sort) {
-    case "new":
-      return { createdAt: 1 };
-    case "old":
+    case "Mais Novo":
       return { createdAt: -1 };
+    case "Mais Antigo":
+      return { createdAt: 1 };
     default:
       return { createdAt: 1 };
   }
@@ -138,8 +138,13 @@ const TicketController = {
   },
 
   async totalCancelledTickets(req, res, next) {
+    const search = req.query.search || "";
+
     try {
-      const tickets = await Ticket.find({ status: "Cancelado" });
+      const tickets = await Ticket.find({
+        status: "Cancelado",
+        aluno: { $regex: search, $options: "i" },
+      });
 
       const totalTickets = tickets.reduce(
         (total, ticket) => total + ticket.quantidade,
@@ -153,8 +158,12 @@ const TicketController = {
   },
 
   async totalConfirmedTickets(req, res, next) {
+    const search = req.query.search || "";
     try {
-      const tickets = await Ticket.find({ status: "Confirmado" });
+      const tickets = await Ticket.find({
+        status: "Confirmado",
+        aluno: { $regex: search, $options: "i" },
+      });
 
       const totalTickets = tickets.reduce(
         (total, ticket) => total + ticket.quantidade,
@@ -168,8 +177,12 @@ const TicketController = {
   },
 
   async totalPendingTickets(req, res, next) {
+    const search = req.query.search || "";
     try {
-      const tickets = await Ticket.find({ status: "Pendente" });
+      const tickets = await Ticket.find({
+        status: "Pendente",
+        aluno: { $regex: search, $options: "i" },
+      });
 
       const totalTickets = tickets.reduce(
         (total, ticket) => total + ticket.quantidade,

@@ -4,6 +4,7 @@ const initialState = {
   page: 1,
   isSearching: false,
   search: "",
+  sort: "Mais Novo",
 };
 
 const querysSlice = createSlice({
@@ -19,9 +20,13 @@ const querysSlice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
     },
+    setSort: (state, action) => {
+      state.sort = action.payload;
+    },
   },
 });
 
-export const { setPage, setIsSearching, setSearch } = querysSlice.actions;
+export const { setPage, setIsSearching, setSearch, setSort } =
+  querysSlice.actions;
 
 export default querysSlice.reducer;
