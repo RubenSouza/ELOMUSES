@@ -19,6 +19,15 @@ export const getAllStudents = async () => {
   }
 };
 
+export const getStudentById = async (id: string) => {
+  try {
+    const response = await axios.get(`${URL}/users/admin/${id}`, config);
+    return response.data;
+  } catch (error) {
+    throw new Error("Erro ao buscar aluno");
+  }
+};
+
 export const createStudent = async (data: any) => {
   try {
     const response = await axios.post(
@@ -28,9 +37,8 @@ export const createStudent = async (data: any) => {
     );
     console.log(response.data);
     return response.data;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Erro ao criar aluno");
+  } catch (e: any) {
+    throw new Error(e.response.data.message);
   }
 };
 

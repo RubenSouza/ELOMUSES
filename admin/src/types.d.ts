@@ -13,8 +13,17 @@ export interface MyEvent extends Event {
 export type Student = {
   _id: string;
   name: string;
+  responsible: string;
   phone: string;
   email: string;
+  profession: string;
+  birthDate: string;
+  address: string;
+  number: string;
+  neighborhood: string;
+  state: string;
+  isAdmin: boolean;
+  city: string;
   createdAt: string;
   contract: number;
   status: string;

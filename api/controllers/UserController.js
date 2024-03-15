@@ -137,7 +137,7 @@ const UserController = {
       status,
       isAdmin,
       contract,
-      adress,
+      address,
       number,
       complement,
       zipCode,
@@ -152,6 +152,13 @@ const UserController = {
     ).toString();
 
     try {
+      let existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res
+          .status(400)
+          .json({ message: "Já existe um aluno com esse email" });
+      }
+
       const user = await User.create({
         responsible,
         name,
@@ -166,7 +173,7 @@ const UserController = {
         status,
         isAdmin,
         contract,
-        adress,
+        address,
         number,
         complement,
         zipCode,
@@ -179,8 +186,7 @@ const UserController = {
       const { password, ...info } = user._doc;
       return res.json(info);
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "O registro falhou" });
+      res.status(500).json({ message: "Error ao criar usuário" });
     }
   },
 
@@ -193,7 +199,7 @@ const UserController = {
         return res.status(401).json({ errors: "Usuário não registrado" });
       }
       const { password, ...info } = user._doc;
-      return res.json({ info });
+      return res.json(info);
     } catch (error) {
       return res.status(401).json({ errors: error });
     }

@@ -67,7 +67,7 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       default: 1,
     },
-    adress: {
+    address: {
       type: String,
       required: true,
       trim: true,

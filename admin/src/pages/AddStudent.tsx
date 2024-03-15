@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { createStudent } from "../utils/students";
 
 const AddStudent = () => {
@@ -54,7 +55,7 @@ const AddStudent = () => {
       status: status,
       isAdmin: permissao,
       contract: contrato,
-      adress: endereco,
+      address: endereco,
       number: numero,
       complement: complemento,
       zipCode: cep,
@@ -62,9 +63,12 @@ const AddStudent = () => {
       neighborhood: bairro,
       state: estado,
     };
-
-    console.log(data);
-    await createStudent(data);
+    try {
+      await createStudent(data);
+      toast.success("Aluno cadastrado com sucesso");
+    } catch (e) {
+      toast.error((e as Error).message);
+    }
   };
 
   return (

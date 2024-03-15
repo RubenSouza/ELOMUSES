@@ -16,7 +16,7 @@ const UserValidation = {
       status: Joi.string().optional(),
       isAdmin: Joi.boolean().optional(),
       contract: Joi.number().optional(),
-      adress: Joi.string().optional(),
+      address: Joi.string().optional(),
       number: Joi.string().optional(),
       complement: Joi.string().optional(),
       zipCode: Joi.string().optional(),

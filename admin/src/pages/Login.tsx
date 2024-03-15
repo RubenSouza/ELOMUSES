@@ -1,4 +1,4 @@
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import waves from "../assets/waves.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -143,7 +143,6 @@ const Login = () => {
           className="absolute -bottom-0 w-[100%] shadow-lg z-10"
         />
       </div>
-      <Toaster />
     </div>
   );
 };

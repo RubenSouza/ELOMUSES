@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Loading from "./components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/features/userLogged";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Main from "./pages/Main";
 const URL = import.meta.env.VITE_API_URL;
 
@@ -56,7 +56,9 @@ function App() {
   else {
     return (
       // <div className={`${darkMode === "dark" ? "dark" : ""}`}>
+
       <div>
+        <Toaster />
         <div
           className="dark:bg-primary-500 h-screen max-h-screen 
         text-primary-600 dark:text-primary-100"
