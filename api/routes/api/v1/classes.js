@@ -26,7 +26,7 @@ router.get(
 
 // router.get("/:id", auth.required, ClassController.show);
 
-router.get("/aluno/:id", auth.required, ClassController.getByStudent);
+router.get("/student/:id", auth.required, ClassController.getByStudent);
 
 router.put(
   "/:id",

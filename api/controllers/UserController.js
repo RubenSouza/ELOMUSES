@@ -27,7 +27,7 @@ const UserController = {
       { expiresIn: "5d" }
     );
 
-    const { password: dbPassword, ...info } = user._doc;
+    const { password: dbPassword, CPF, ...info } = user._doc;
     return res.status(200).json({ ...info, accessToken });
   },
 

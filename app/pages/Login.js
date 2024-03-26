@@ -3,19 +3,38 @@ import React, { useState } from "react";
 import { Button, TextInput } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/userSlice";
-import { useNavigation } from "@react-navigation/native";
+import { useToast } from "react-native-toast-notifications";
+import axios from "axios";
+const URL = process.env.EXPO_PUBLIC_API_URL;
 
 export default function Login() {
-  const navigation = useNavigation();
-
   const dispatch = useDispatch();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(true);
+  const toast = useToast();
 
-  const handleSubmit = () => {
-    dispatch(setUser(true));
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    try {
+      const fetchUserLogin = await axios.post(`${URL}/users/login`, userData);
+      if (fetchUserLogin) {
+        dispatch(setUser(fetchUserLogin.data));
+      }
+    } catch (error) {
+      toast.show(error?.response?.data?.message, {
+        type: "warning",
+        placement: "top",
+        duration: 4000,
+        animationType: "slide-in",
+      });
+    }
   };
 
   return (

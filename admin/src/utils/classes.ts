@@ -3,7 +3,7 @@ import moment from "moment-timezone";
 const user = localStorage.getItem("user");
 const jsonUser = user ? JSON.parse(user) : null;
 const accessToken = jsonUser?.accessToken.toString();
-const URL = import.meta.env.VITE_API_URL;
+const URL = import.meta.env.API_URL;
 
 const config = {
   headers: {

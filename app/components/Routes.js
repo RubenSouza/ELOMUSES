@@ -115,6 +115,8 @@ const CustomDrawerContent = ({ navigation }) => {
 
 const ProtectedRoute = () => {
   const user = useSelector(state => state.userLogged.user);
+
+  console.log(user);
   const isLoggedIn = !!user;
 
   if (!isLoggedIn) {
